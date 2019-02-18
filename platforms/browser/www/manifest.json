@@ -1,0 +1,11 @@
+{
+  "background_color": "#FFF",
+  "display": "standalone",
+  "name": "Bandit Grendel",
+  "short_name": "Bandit Grendel",
+  "version": "io.cordova.hellocordova",
+  "description": "An Augmented Reality Game.",
+  "author": "Andre Becker",
+  "icons": [],
+  "start_url": "index.html"
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        -->
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; connect-src *; script-src 'self' 'unsafe-inline' 'unsafe-eval';media-src *; img-src * data: content:;">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <title>Als Bandit spielen</title>
+    </head>
+    <body>
+        <h1>Als Bandit spielen</h1>
+		<div class="gameFormsDiv">
+			<form method="get" action="game.html">
+				<input type="hidden" id="hiddenBanditId" name="hiddenBanditId" value="1"/>
+				<input type="hidden" name="gamePlayerRole" id="gamePlayerRole" class="gamePlayerRole" value="1">
+				<input type="hidden" name="hiddenGameid" id="hiddenGameid" class="hiddenGameid" value="1">
+				<input type="hidden" name="hiddenLat" class="hiddenLat" value="1">
+				<input type="hidden" name="hiddenLon" class="hiddenLon" value="1">
+				<input type="hidden" id="hiddenBanditName" name="hiddenPlayerName" value="1">
+				<div class="centerDiv"><div class="cdLeft"><div class="gameidFloat">Spielername: </div></div><div class="cdRight"><div class="banditname" id="banditname"></div></div></div>
+				<div class="centerDiv"><div class="cdLeft"><div class="gameidFloat">Spiele-ID: </div></div><div class="cdRight"><div class="currentgameid" id="currentgameid"></div></div></div>
+				<div class="centerDiv"><div class="cdLeft"><div class="gameidFloat">Passwort: </div></div><div class="cdRight"><div class="gameidFloat" id="currentgamepwid"></div></div></div>
+				<div class="centerDiv"><div class="cdLeft">Dauer: </div><div class="cdRight"><input type="text" id="chosenTime" name="gametime" value="20" readonly /> Minuten</div></div>
+				<div class="centerDiv"><div class="cdLeft">Spielerliste:</div><div class="cdRight"><div class="playerlist"><br>-</div></div></div>
+				<div class="centerDiv"><div class="cdLeft"></div><div class="cdRight">Bitte beachten Sie: Sofern sich ein neuer Spieler in die Lobby einklinkt, wird der
+				Button zum Starten des Spieles f&uuml;r 5 Sekunden blockiert. Das ist aus technischen Gr&uuml;nden notwendig.</div></div>
+				<input type="button" id="itIsTimeToStart" name="itIsTimeToStart" value="Spiel jetzt starten"/><br>
+				<div class="centerDiv" id="plsWait"></div>
+				<input type="submit" id="startgame" name="startgame" value="Spiel starten"/><br><br><br>
+			</form>
+		</div>
+		<input type="button" class="backbutton" value="Zur&uuml;ck" />
+		<script src="js/jquery-1.12.4.min.js"></script>
+		<script src="js/globalvariables.js"></script>
+		<script src="js/geturlparam.js"></script>
+		<script src="js/leftgame.js"></script>
+		<script src="js/mainlobby.js"></script>
+		<script src="js/playerlist.js"></script>
+		<script src="js/startnow.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+    </body>
+</html>

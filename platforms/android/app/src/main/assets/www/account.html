@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        -->
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; connect-src *; script-src 'self' 'unsafe-inline' 'unsafe-eval';media-src *; img-src * data: content:;">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <title>Mein Account</title>
+    </head>
+    <body>
+        <h1>Mein Account</h1>
+		<div class="accDiv"><div class="cdLeft">Spielername:</div><div class="cdRight"><input type="text" id="loginName" name="loginName"/></div>
+		<div class="cdLeft">Passwort:</div><div class="cdRight"><input type="password" id="loginPW" name="loginPW"/></div><br>
+		<input type="button" id="login" name="login" value="Einloggen"/><br><br>
+		<input type="button" id="forgotpw" name="forgotpw" value="Passwort vergessen? Neues PW anfordern"/><br><br>
+		<input type="button" id="newAccount" name="newAccount" value="Einen neuen Account anlegen"/><br>
+		<br><br></div>
+		<div id="newAccountCreated" class="successMsg">Ihr Account wurde erfolgreich angelegt!</div>
+		<div id="accCreationFailed" class="errorMsg">Ihre Registrierung ist gescheitert. Bitte versuchen Sie es erneut!</div>
+		<div id="newAccountFailed" class="errorMsg">Der Login ist gescheitert. Bitte pr&uuml;fen Sie Ihre Anmeldedaten und versuchen Sie es erneut!</div>
+		<div id="newPWSent" class="successMsg">Das neue Passwort wurde Ihnen per E-Mail zugesendet. Bitte schauen Sie dort nach!</div>
+		<div id="pleaseActivateAcc" class="successMsg">Sie haben sich erfolgreich registriert. Wir haben Ihnen soeben eine E-Mail zugesendet, in welcher ein Link steht. Bitte klicken Sie auf diesen, um Ihre Registrierung zu best&auml;tigen!</div>
+		<div id="noPW" class="errorMsg">Bitte geben Sie Ihren Spielernamen ein! Ohne ist keine Passwortwiederherstellung m&ouml;glich.</div>
+		<div class="centerDivAcc"><div class="cdLeft">Spielername:</div><div class="cdRight"><input type="text" id="accName" name="accName"/></div>
+		<div class="cdLeft">Passwort:</div><div class="cdRight"><input type="password" id="accPW" name="accPW"/></div>
+		<div id="emailDiv"><div class="cdLeft">E-Mail Adresse:</div><div class="cdRight"><input type="email" id="accMail" name="accMail"/></div></div>
+		<input type="button" id="createAcc" name="createAcc" value="Account speichern"/></div><br>
+		<div class="centerDivAchieve"><div class="cdLeft"><h2 id="achieveH2">&#127942; Achievements &#127942;</h2></div><div class="cdRight"></div>
+		<div class="cdLeft">Avatar</div><div class="cdRight">
+		<a href="#" id="chooseAvatar"><img id="avararBlank" class="gallery" src="img/avatars/avatarbig/blank-profile-picture.png" alt="Avatar"></img></a>
+		<table id="galleryTableAsPopup">
+			<tr>
+				<td><img class="gallery" id="1" src="img/avatars/avatarbig/audit.png"></img></td><td><img class="gallery" id="2" src="img/avatars/avatarbig/babyface.png"></img></td><td><img class="gallery" id="3" src="img/avatars/avatarbig/burglar.png"></img></td><td><img class="gallery" id="4" src="img/avatars/avatarbig/burglar-female.png"></img></td>
+			</tr>
+			<tr>
+				<td><img class="gallery" id="5" src="img/avatars/avatarbig/comic-characters.png"></img></td><td><img class="gallery" id="6" src="img/avatars/avatarbig/comic-characters-b.png"></img></td><td><img class="gallery" id="7" src="img/avatars/avatarbig/comic-characters-d.png"></img></td><td><img class="gallery" id="8" src="img/avatars/avatarbig/comic-characters-w.png"></img></td>
+			</tr>
+			<tr>
+				<td><img class="gallery" id="9" src="img/avatars/avatarbig/cop.png"></img></td><td><img class="gallery" id="10" src="img/avatars/avatarbig/detective-2.png"></img></td><td><img class="gallery" id="11" src="img/avatars/avatarbig/hero.png"></img></td><td><img class="gallery" id="12" src="img/avatars/avatarbig/inspector.png"></img></td>
+			</tr>
+			<tr>
+				<td><img class="gallery" id="13" src="img/avatars/avatarbig/robber.png"></img></td><td><img class="gallery" id="14" src="img/avatars/avatarbig/sherlock-holmes.png"></img></td><td><img class="gallery" id="15" src="img/avatars/avatarbig/sherlock-holmes-female.png"></img></td><td><img class="gallery" id="16" src="img/avatars/avatarbig/thief.png"></img></td>
+			</tr>
+		</table></div>
+		<div class="cdLeft">Anzahl gewonnener Spiele</div><div class="cdRight"><input type="text" id="accWins" name="accWins" value="0" readonly /></div>
+		<div class="cdRightSub">davon als Bandit <input type="text" id="accWinsBandit" name="accWinsBandit" value="0" readonly /></div><div class="cdRightSub">davon als Detektiv <input type="text" id="accWinsDetective" name="accWinsDetective" value="0" readonly /></div>
+		<div class="cdLeft">Anzahl verlorener Spiele</div><div class="cdRight"><input type="text" id="accLosses" name="accLosses" value="0" readonly /></div>
+		<div class="cdRightSub">davon als Bandit <input type="text" id="accLossesBandit" name="accLossesBandit" value="0" readonly /></div><div class="cdRightSub">davon als Detektiv <input type="text" id="accLossesDetective" name="accLossesDetective" value="0" readonly /></div>
+		<div class="achHalf"><div class="cdLeft">Blechmedaille Allgemein (mind. 1 Spiel gewonnen)</div><div class="cdRight"><img class="achMedal" id="blechmedaille" src="img/achieve/blech.png" alt="Blechmedaille" /><div id="blechdiv" class="notAchievedByNow">Noch nicht freigeschaltet</div></div>
+		<div class="achHalf"><div class="achHalfSub"><div class="cdLeft">Blechmedaille (Bandit)</div><div class="cdRight"><img class="achMedal" id="blechmedailleBandit" src="img/achieve/blechBandit.png" alt="Blechmedaille Bandit" /><div id="blechdivBandit" class="notAchievedByNow">Noch nicht freigeschaltet</div></div></div>
+		<div class="achHalfSub"><div class="cdLeft">Blechmedaille (Detektiv)</div><div class="cdRight"><img class="achMedal" id="blechmedailleDete" src="img/achieve/blechDete.png" alt="Blechmedaille Detektiv" /><div id="blechdivDete" class="notAchievedByNow">Noch nicht freigeschaltet</div></div></div></div></div>
+		<div class="achHalf"><div class="cdLeft">Bronzemedaille Allgemein (mind. 10 Spiele gewonnen)</div><div class="cdRight"><img class="achMedal" id="bronzemedaille" src="img/achieve/bronze.png" alt="Bronzemedaille" /><div id="bronzediv" class="notAchievedByNow">Noch nicht freigeschaltet</div></div>
+		<div class="achHalf"><div class="achHalfSub"><div class="cdLeft">Bronzemedaille (Bandit)</div><div class="cdRight"><img class="achMedal" id="bronzemedailleBandit" src="img/achieve/bronzeBandit.png" alt="Bronzemedaille Bandit" /><div id="bronzedivBandit" class="notAchievedByNow">Noch nicht freigeschaltet</div></div></div>
+		<div class="achHalfSub"><div class="cdLeft">Bronzemedaille (Detektiv)</div><div class="cdRight"><img class="achMedal" id="bronzemedailleDete" src="img/achieve/bronzeDete.png" alt="Bronzemedaille Detektiv" /><div id="bronzedivDete" class="notAchievedByNow">Noch nicht freigeschaltet</div></div></div></div></div>
+		<div class="achHalf"><div class="cdLeft">Silbermedaille Allgemein (mind. 50 Spiele gewonnen)</div><div class="cdRight"><img class="achMedal" id="silbermedaille" src="img/achieve/silber.png" alt="Silbermedaille" /><div id="silberdiv" class="notAchievedByNow">Noch nicht freigeschaltet</div></div>
+		<div class="achHalf"><div class="achHalfSub"><div class="cdLeft">Silbermedaille (Bandit)</div><div class="cdRight"><img class="achMedal" id="silbermedailleBandit" src="img/achieve/silberBandit.png" alt="Silbermedaille Bandit" /><div id="silberdivBandit" class="notAchievedByNow">Noch nicht freigeschaltet</div></div></div>
+		<div class="achHalfSub"><div class="cdLeft">Silbermedaille (Detektiv)</div><div class="cdRight"><img class="achMedal" id="silbermedailleDete" src="img/achieve/silberDete.png" alt="Silbermedaille Detektiv" /><div id="silberdivDete" class="notAchievedByNow">Noch nicht freigeschaltet</div></div></div></div></div>
+		<div class="achHalf"><div class="cdLeft">Goldmedaille Allgemein (mind. 250 Spiele gewonnen)</div><div class="cdRight"><img class="achMedal" id="goldmedaille" src="img/achieve/gold.png" alt="Goldmedaille" /><div id="golddiv" class="notAchievedByNow">Noch nicht freigeschaltet</div></div>
+		<div class="achHalf"><div class="achHalfSub"><div class="cdLeft">Goldmedaille (Bandit)</div><div class="cdRight"><img class="achMedal" id="goldmedailleBandit" src="img/achieve/goldBandit.png" alt="Goldmedaille Bandit" /><div id="golddivBandit" class="notAchievedByNow">Noch nicht freigeschaltet</div></div></div>
+		<div class="achHalfSub"><div class="cdLeft">Goldmedaille (Detektiv)</div><div class="cdRight"><img class="achMedal" id="goldmedailleDete" src="img/achieve/goldDete.png" alt="Goldmedaille Detektiv" /><div id="golddivDete" class="notAchievedByNow">Noch nicht freigeschaltet</div></div></div></div></div>
+		<div class="achHalf"><div class="cdLeft">Champion Allgemein (mind. 1000 Spiele gewonnen)</div><div class="cdRight"><img class="achMedal" id="champmedaille" src="img/achieve/champ.png" alt="Champion" /><div id="champdiv" class="notAchievedByNow">Noch nicht freigeschaltet</div></div>
+		<div class="achHalf"><div class="achHalfSub"><div class="cdLeft">Champion (Bandit)</div><div class="cdRight"><img class="achMedal" id="champmedailleBandit" src="img/achieve/champBandit.png" alt="Champion Bandit" /><div id="champdivBandit" class="notAchievedByNow">Noch nicht freigeschaltet</div></div></div>
+		<div class="achHalfSub"><div class="cdLeft">Champion (Detektiv)</div><div class="cdRight"><img class="achMedal" id="champmedailleDete" src="img/achieve/champDete.png" alt="Champion Detektiv" /><div id="champdivDete" class="notAchievedByNow">Noch nicht freigeschaltet</div></div></div></div></div>
+		<p id="noAchievement">Sie haben leider noch kein Achievement freigeschaltet.</p></div>
+		<input type="button" class="backbutton" value="Zur&uuml;ck" />
+		<script src="js/jquery-1.12.4.min.js"></script>
+		<script src="js/menubuttons.js"></script>
+		<script src="js/globalvariables.js"></script>
+		<script src="js/achieved.js"></script>
+		<script src="js/createacc.js"></script>
+		<script src="js/avatar.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+    </body>
+</html>

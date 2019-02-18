@@ -1,0 +1,4 @@
+#Tue Jan 29 14:45:27 CET 2019
+base.0=C\:\\Users\\Andre\\Desktop\\GrendelApp\\grendelapp\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\1
+path.0=classes.dex
+renamed.0=classes.dex

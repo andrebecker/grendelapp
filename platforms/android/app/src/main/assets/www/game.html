@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        -->
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; connect-src *; script-src 'self' 'unsafe-inline' 'unsafe-eval';media-src *; img-src * data: content:;">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+		<link rel="stylesheet" type="text/css" href="css/leaflet.css" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Bandit Grendel</title>
+    </head>
+    <body id="gamebody">   
+		<div id="gps">
+			<div id="mapdiv"><div class="leaflet-control-container">
+        <div class="leaflet-top leaflet-right">
+        </div>
+      </div></div>
+			<script src="js/jquery-1.12.4.min.js"></script>
+			<script src="js/globalvariables.js"></script>
+			<script src="js/ol.js"></script>
+				<input type="hidden" id="gameplayerid" value="1">
+				<input type="hidden" id="gameplayerrole" value="1">
+				<input type="hidden" id="gametime" value="1">
+				<input type="hidden" id="gamematchid" value="1">
+				<input type="hidden" id="gamemode" value="0">
+				<input type="hidden" name="hiddenLat" class="hiddenLat" value="1">
+				<input type="hidden" name="hiddenLon" class="hiddenLon" value="1">
+				<input type="hidden" id="getGamePlayerName" value="1">
+				<div id="describeGP"></div>
+				<div id="timefield">Verbleibende Zeit: <span id="time"></span></div>
+				<div id="chatBTNdiv"><input type="button" id="chatBTN" value="&#9993;">
+					<!-- The Modal -->
+					<div id="myModal" class="modal">
+
+					  <!-- Modal content -->
+					  <div class="modal-content">
+						<span class="close">&#215;</span>
+						<div id="page-wrap">
+						
+							<h2>Chat</h2>
+							
+							<p id="name-area"></p>
+							
+							<div id="chat-wrap"><div id="chat-area"></div></div>
+							
+							<form id="send-message-area">
+								<p id="msgHeadline">Deine Nachricht: </p>
+								<textarea id="sendie" maxlength="100" ></textarea> <div>Durch Druck auf Enter wird die Nachricht abgesendet!</div>
+							</form>
+						
+						</div>
+					  </div>
+
+					</div>
+				</div>
+			<!--	<div id="gameHints"></div>-->
+				<form method="post" action="game.html">
+				
+					<table id="tableOfButton">
+					<tr><td><input type="button" id="arButton" value="&#128269; Lupe &#128270;">
+					<div class="select" id="armodeSelect">
+						<!--<label for="videoSource">Video source: </label>-->
+						<select id="videoSource"></select>
+					</div>
+
+					<div id="blur"><video id="videostream" src="#" autoplay></video><div id="showman"></div></div></td>
+					<td><table id="controls">
+						<tr><td><input type="button" id="upleft" class="disable-btn" value="&#8598;"></td><td><input type="button" id="up" class="disable-btn" value="&#8593;"></td><td><input type="button" id="upright" class="disable-btn" value="&#8599;"></td></tr>
+						<tr><td><input type="button" id="left" class="disable-btn" value="&#8592;"></td><td><input type="image" id="sprintButton" class="sprint-btn" src="img/buttons/sprint.jpg" /></td><td><input type="button" id="right" class="disable-btn" value="&#8594;"></td></tr>
+						<tr><td><input type="button" id="downleft" class="disable-btn" value="&#8601;"></td><td><input type="button" id="down" class="disable-btn" value="&#8595;"></td><td><input type="button" id="downright" class="disable-btn" value="&#8600;"></td></tr>
+					</table></td>
+					
+					<td><input type="image" id="flaregun" class="flaregun-btn" src="img/buttons/signal.png" />
+					<input type="image" id="cellsite" class="cellsite-btn" src="img/buttons/cellsite.jpg" />
+					<input type="image" id="sound-on" class="sound-btn" src="img/buttons/sound-on.png" />
+					<input type="image" id="sound-off" class="sound-btn" src="img/buttons/sound-off.png" />
+					<audio id="audiostream"><source src="sound/Footsteps.mp3" type="audio/mpeg"></audio></td></tr></table>
+				</form>
+		</div>
+		<div id="gameHints"></div>
+		<input type="image" id="disguiseButton" class="sprint-btn" src="img/buttons/disguise.png" /><br>
+		<input type="button" id="leaveGame" class="leaveGame" value="Spiel verlassen" />
+		<script src="js/geturlparam.js"></script>
+		<script src="js/geturlparamgamemenu.js"></script>
+		<script src="js/describe.js"></script>
+        <script src="js/countdown.js"></script>
+		<script src="js/audio.js"></script>
+		<script src="js/gpsconnections.js?n=1"></script> <!-- n=1 prevents caching -->
+		<!--<script src="js/controls.js"></script>-->
+		<script src="js/leaflet.js"></script>
+		<script src="js/osmtogeojson.js"></script>
+		<script src="js/modalchat.js"></script>
+		<script src="js/orientation.js"></script>
+		<script src="js/armode.js"></script>
+		<script src="js/leavegame.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+    </body>
+</html>

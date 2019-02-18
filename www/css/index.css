@@ -1,0 +1,669 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+ 
+ /* CORDOVA STANDARDS -------------------------------------------------------------------------- */
+ 
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+/* Portrait layout (default) */
+.app {
+    background:url("img/logo.png") no-repeat center top; /* 170px x 200px */
+    position:absolute;             /* position in the center of the screen */
+    left:50%;
+    top:50%;
+    height:50px;                   /* text area height */
+    width:225px;                   /* text area width */
+    text-align:center;
+    padding:180px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
+    margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
+                                   /* offset horizontal: half of text area width */
+}
+
+/* Landscape layout (with min-width) */
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
+    .app {
+        background-position:left center;
+        padding:75px 0px 75px 170px;  /* padding-top + padding-bottom + text area = image height */
+        margin:-90px 0px 0px -198px;  /* offset vertical: half of image height */
+                                      /* offset horizontal: half of image width and text area width */
+    }
+}
+
+.event {
+    border-radius:4px;
+    -webkit-border-radius:4px;
+    color:#FFFFFF;
+    font-size:12px;
+    margin:0px 30px;
+    padding:2px 0px;
+}
+
+.event.listening {
+    background-color:#333333;
+    display:block;
+}
+
+.event.received {
+    background-color:#4B946A;
+    display:none;
+}
+
+@keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+ 
+@-webkit-keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+ /*
+.blink {
+    animation:fade 3000ms infinite;
+    -webkit-animation:fade 3000ms infinite;
+}*/
+
+
+/* MENU ELEMENTS -------------------------------------------------------------------------- */
+
+body {
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+    background-color:#E4E4E4;
+	background-image: radial-gradient(white, green);
+    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    height:100%;
+    margin:0px;
+    padding:0px;
+    text-transform:uppercase;
+    width:100%;
+	background: url(../img/logo.jpg) no-repeat center center fixed;
+	background-size: cover;
+}
+
+h1 {
+    overflow:visible;
+    padding: 1%;
+    text-align:center;
+	color: #343434;
+	font-size: 4vw;
+	text-shadow: 0 2px white, 0 3px #777;
+	background-color: rgba(249, 249, 249, 0.7);
+	width: 70vw;
+	margin: 0px 15%;
+	border-radius: 1vw;
+	border-style: solid;
+}
+
+@media screen and (max-width: 799px) {
+	h1 {
+		font-size: 8vw;
+	}
+}
+
+#mapdiv {
+	width: 100vw;
+	height: 15vw;
+	float: left;
+}
+		
+#controls {
+	float: left;
+}
+
+#controls input {
+	background: linear-gradient(to bottom, #cb0d28 5%, #420202 100%);
+	display: none;
+}
+		
+table {
+	width: 50vw;
+	max-height: 45vw;
+	margin: 0 25% 0 25%;
+}
+		
+table td {
+	width: 33.33%;
+}
+
+table td input {
+	width: 100%;
+	height: 100%;
+	font-weight: bold;
+	font-size: 499%;
+}
+
+table td input[type=image] {
+	width: 100%;
+	font-weight: bold;
+	font-size: 499%;
+}
+
+@media screen and (max-width: 600px) {
+	#timefield {
+		text-align: center;
+		z-index: 9999;
+		position: absolute;
+		margin: 5vw 0 5vw 0;
+		width: 85vw;
+	}
+	
+	#controls {
+		width: 30vw;
+	}
+	
+	#closebutton {
+		height: inherit;
+	}
+}
+
+@media screen and (min-width: 600px) {
+	#timefield {
+		text-align: center;
+		z-index: 9999;
+		position: absolute;
+		margin: 0 40vw;
+		width: 85vw;
+		font-weight: bold;
+	}
+}
+
+#referToMainLobby, #referToMainLobbyAsDete, #referToGameLobbyAsDete, #startgame {
+	display: none;
+}
+
+.backbutton {
+	margin: 0px 25%;
+	width: 50vw;
+}
+
+.mainBtnList {
+	/*width: 50vw;
+	margin: 0 25% 0 25%;*/
+	height: 10vw;
+	background: linear-gradient(to bottom, #7892c2 5%, #476e9e 100%);
+	background-color: #7892c2;
+	/*background-color: rgba( 120 ,146 ,194, 0.7);*/
+	width: 72vw;
+	margin: 0px 15%;
+	padding: 1%;
+	-moz-border-radius: 1vw;
+	-webkit-border-radius: 1vw;
+	border-radius: 1vw;
+	color: #fff;
+	font-weight: bold;
+	font-size: 100%;
+	cursor: pointer;
+}
+
+@media screen and (min-width: 800px) {
+	.mainBtnList {
+		height: 7vw;
+	}
+	
+	#controls {
+		font-size: xx-large;
+	}
+	
+	.centerDivRules {
+		font-size: 125%;
+	}
+}
+
+input[type=text], input[type=number], input[type=password], input[type=email] {
+    width: 100%;
+}
+
+input[type=button] {
+	font-size: 100%;
+	background: linear-gradient(to bottom, #7892c2 5%, #476e9e 100%);
+	background-color: #7892c2;
+	/*background-color: rgba( 120 ,146 ,194, 0.7);*/
+	width: 72vw;
+	margin: 0px 15%;
+	padding: 1%;
+	-moz-border-radius: 1vw;
+	-webkit-border-radius: 1vw;
+	border-radius: 1vw;
+	color: #fff;
+	font-weight: bold;
+	font-size: 100%;
+	cursor: pointer;
+	padding: 1%;
+}
+
+form input[type=button] {
+	width: 50vw;
+}
+
+td input[type=button] {
+	width: 100%;
+	height: 7.5vw;
+}
+
+.centerDivAcc, .centerDivAchieve, .accDiv {
+	color: #000dff;
+	font-weight: bold;
+	padding: 1%;
+	background-color: rgba(248, 247, 216, 0.7);
+	width: 70vw;
+	margin: 0px 15%;
+	border-radius: 1vw;
+}
+
+.centerDivAcc input[type=button] {
+	width: 50vw;
+}
+
+.centerDiv {
+	color: #000dff;
+	font-weight: bold;
+	padding: 1%;
+}
+
+.centerDivAchieve, .gameFormsDiv {
+	background-color: rgba(248, 247, 216, 0.7);
+	width: 70vw;
+	margin: 0px 15%;
+	border-radius: 1vw;
+	margin-bottom: 1vw;
+	padding: 1%;
+}
+
+#newAccountFailed, #accCreationFailed {
+	width: 70vw;
+	margin: 0px 15%;
+	border-radius: 1vw;
+}
+
+#newAccountFailed, #accCreationFailed {
+	background-color: rgba(129, 37, 37, 0.7);
+}
+
+#newAccountCreated, #newPWSent {
+	background-color: rgba(37, 129, 64, 0.7);
+}
+
+.centerDivAchieve .cdLeft, .centerDivAchieve .cdRight, .centerDivAchieve .achHalf, #accLosses, #accWins, .cdRightSub, .cdRightSub input, #noAchievement {
+	text-align: center;
+}
+
+.centerDivAchieve .cdRight input {
+	margin-bottom: 1vw;
+}
+
+#loginName, #loginPW, #accName, #accMail, #accPW {
+	margin-bottom: 1vw;
+}
+
+@media screen and (min-width: 480px) and (max-width: 1024px) {
+	
+	.accDiv input[type="button"] {
+		white-space: normal;
+	}
+}
+
+@media screen and (max-width: 479px) {
+	.accDiv {
+		font-size: 70%;
+	}
+	
+	.mainBtnList {
+		font-size: 90%;
+		white-space: normal;
+	}
+}
+
+.accDiv input[type="button"] {
+	width: 80%;
+	margin: 0 10% 0 10%;
+}
+
+.centerDivRules {
+	background: #2a2a00;
+	color: #000;
+	font-weight: bold;
+	padding: 1%;
+	text-transform: initial;
+	background-color: rgba(248, 247, 216, 0.7);
+	width: 70vw;
+	margin: 0px 15%;
+	border-radius: 1vw;
+}
+
+.cdLeft {
+	color: #000;
+}
+
+#plsWait {
+	background-color: rgba( 162, 13, 13, 0.7);
+	width: 50vw;
+	margin: 0px 15%;
+	margin-bottom: 0px;
+	margin-bottom: 0px;
+	border-radius: 1vw;
+	color: #fff;
+	text-align: center;
+	display: none;
+}
+
+
+/* CHAT -------------------------------------------------------------------------- */
+
+#chat-wrap                      { border: 1px solid #eee; margin: 0 0 15px 0; }
+#chat-area                      { height: 300px; overflow: auto; border: 1px solid #666; padding: 20px; background: white; }
+#chat-area span                 { color: white; background: #333; padding: 4px 8px; -moz-border-radius: 5px; -webkit-border-radius: 8px; margin: 0 5px 0 0; }
+#chat-area p                    { padding: 8px 0; border-bottom: 1px solid #ccc; }
+
+#name-area                      { top: 12px; right: 0; color: #862c2c; font: bold 12px "Lucida Grande", Sans-Serif; text-align: right; }   
+#name-area span                 { color: #fa9f00; }
+
+#send-message-area p            { float: left; color: white; padding-top: 27px; font-size: 14px; }
+#sendie                         { border: 3px solid #999; width: 360px; padding: 10px; font: 12px "Lucida Grande", Sans-Serif; }
+
+#chatBTN {
+	width: 5vw;
+	background: #a300ec;
+	background: linear-gradient(to bottom, #a300ec 5%, #7e20a8e6 100%);
+	color: #fff;
+	font-size: 300%;
+	z-index: 9999;
+	position: absolute;
+	margin: 9vw -99vw;
+	border: dashed;
+}
+
+@media screen and (max-width: 1366px) {
+	#chatBTN {
+		margin: 7vw -99vw;
+		width: 19vw;
+		padding: 0;
+		z-index: 9998;
+	}
+	#chat-area {
+		height: 13vw;
+		padding: 0px;
+	}
+	.modal {
+		padding-top: 0px;
+	}
+	#sendie {
+		padding: 0px;
+	}
+	#chat-wrap { 
+		margin: 0; 
+	}
+	#chat-wrap { 
+		margin: 0; 
+	}
+	
+	.modal-content {
+		background-color: #fefefe;
+		margin: auto;
+		width: 80%;
+	}
+}
+
+/***/
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#msgHeadline {
+	font-weight: bold;
+}
+
+#tableOfButton {
+	margin: 0px;
+}
+
+#chooseMode {
+	width: 100%;
+}
+
+#chosenTime {
+	background: transparent;
+	border: none;
+	color: ##000;
+	font-weight: bold;
+	font-size: inherit;
+}
+
+
+/* ACHIEVEMENTS -------------------------------------------------------------------------- */
+
+.achHalf {
+	border-bottom-style: solid;
+	display: table;
+	width: 100%;
+}
+
+.achHalfSub {
+	display: table-cell;
+	width: 50%;
+}
+
+.achMedal {
+	width: 10%;
+}
+
+#achieveH2 {
+	color: #fff;
+	background-color: rgba(72, 45, 246, 0.7);
+	text-align: center;
+}
+
+#gamebody {
+	overflow: hidden;
+}
+
+.cdRightSub {
+	width: 50%;
+	float: left;
+	color: #7a19c9;
+	margin-bottom: 2vw;
+}
+
+.notAchievedByNow {
+	color: #860000;
+}
+
+hr {
+	border-bottom: 0.1vw dashed #ccc;
+	background: #999;
+}
+
+.gallery {
+	height: 10vw;
+}
+		
+#galleryTableAsPopup {
+	display: none;
+	width: 50vw;
+	margin: 0 10%;
+}
+
+
+/* EXTRA BUTTONS -------------------------------------------------------------------------- */
+
+#arButton {
+	margin: 0;
+	width: 25vw;
+	background-color: #000000;
+}
+
+video {
+	width: 25vw;
+	float: left;
+}
+
+#armodeSelect {
+	display: none;
+}
+
+#showman {
+	width: 20vw;
+	background: url("../img/spuren.png") no-repeat;
+	height: 30vw;
+	position: absolute;
+    margin: 5vw;
+}
+
+#blur {
+	position: relative;
+}
+
+#sprintButton {
+	background: url("img/buttons/sprint.jpg") no-repeat;
+	height: 7.5vw;
+	margin: 0 15% 0 15%;
+	border-radius: 1vw;
+	cursor: pointer;
+	padding: 1%;
+	display: none;
+}
+
+#disguiseButton {
+	/*background: url("../img/buttons/disguise.png") no-repeat;*/
+	height: 7.5vw;
+	margin-top: -10vw;
+	margin-left: 92vw;
+	border-radius: 1vw;
+	cursor: pointer;
+	padding: 1%;
+	display: none;
+}
+
+#flaregun, #cellsite, #sound-on, #sound-off {
+	height: 5vw;
+	width: 5vw;
+}
+
+#progressbar {
+  background-color: black;
+  border-radius: 1vw;
+  /* (height of inner div) / 2 + padding */
+  padding: 1%;
+  width: 25vw;
+}
+
+#progressbar>div {
+  background-color: orange;
+  width: 40%;
+  /* Adjust with JavaScript */
+  height: 1vw;
+  border-radius: 0.8vw;
+}
+
+#gameHints {
+    font-weight: bold;
+	color: #fff;
+	text-align: end;
+	margin-top: -40vw;
+}
+
+#leaveGame {
+	width: 20%;
+    margin-top: 20vw;
+    margin-left: 0px;
+}
+
+#describeGP {
+	width: 90vw;
+	height: 90vw;
+    background: #fff;
+    font-weight: bold;
+	padding: 5vw;
+}
+
+
+/* INFO BOXES -------------------------------------------------------------------------- */
+
+.successMsg, .errorMsg {
+    text-align: center;
+    background: #ff0000;
+    color: #fff;
+    font-weight: bold;
+    width: 48vw;
+	padding: 1vw;
+    margin: 0 25vw;
+	background-repeat: no-repeat;
+	background-position: left;
+    border-radius: 1vw;
+	border-style: solid;
+	display: none;
+}
+.successMsg {
+    color: #fff;
+	background-color: rgba(116, 171, 22, 0.7);
+    width: 70vw;
+    margin: 0px 15%;
+    background-image: url("img/success.png");
+}
+.errorMsg {
+    color: #fff;
+    background-color: rgba(129, 37,37, 0.7);
+    width: 70vw;
+    margin: 0px 15%;
+    background-image: url("img/error.png");
+}
+
+.subheading {
+	font-weight: bolder;
+}
