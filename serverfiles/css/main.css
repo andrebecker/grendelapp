@@ -1,0 +1,116 @@
+/* LAYOUT ------------------------------------------ */
+ 
+body {
+    background: #ffffff;
+    font-size: 12px;
+    color: #000000;
+    font-family: Verdana, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* MAIN CONTENT -------------------*/
+
+.mainContent{
+	background-color: #ffffff;
+	width: 100vw;
+}
+
+.hgroup {
+	text-align: center;
+	font-weight: bold;
+	
+}
+
+h1 {
+	text-align: center;
+	background-color: #51e070ed;
+}
+
+
+footer {
+	background-color: grey;
+	text-align: center;
+}
+
+#copyright {
+	background-color: darkgrey;
+	text-align: center;
+	list-style-type: none;
+	width: 95%;
+}
+			
+.successMsg{
+	color: #4F8A10;
+	background-color: #DFF2BF;
+	font-weight: bold;
+	font-size: 24px;
+}
+
+.failedMsg{
+	color: #fff;
+	background-color: #ff0000;
+	font-weight: bold;
+	font-size: 24px;
+}
+
+.infoMsg{
+	color: #fff;
+	background-color: #3728c3;
+	font-weight: bold;
+	font-size: 24px;
+}
+			
+.table, .adminTable{
+	background: #7f2cbd;
+	color: #fff;
+	margin-top: 0.5%;
+	border: 1px;
+	width: 100vw;
+	font-weight: bold;
+}
+			
+.table tr, .adminTable tr{
+	background: #320875ed;
+}
+
+.table tr th, .adminTable tr th{
+	background: #000;
+}
+
+.table tr td {
+	text-align: center;
+	width: 50vw;
+}
+
+.adminTable tr td {
+	text-align: center;
+	width: 25vw;
+}
+
+.subtitle {
+	font-weight: bold;
+	font-size: 16px;
+	color: #fff;
+}
+
+.category {
+	margin-top: 0.5%;
+	padding: 0.5%;
+	background-color: #0b7bdaed;
+}
+
+.radioRating {
+	margin-left: 5%;
+	top: 2px;
+    position: relative;
+}
+
+textarea {
+	width: 50%;
+	height: 8vw;
+}
+
+#mainSurvey {
+	display: none;
+}

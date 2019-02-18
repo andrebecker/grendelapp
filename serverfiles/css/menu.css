@@ -1,0 +1,9 @@
+/* HEADER & NAVIGATION ------------------------------ */
+
+#footer_nav {
+	display: inline-block;
+}
+
+#footer_nav .li_none {
+	list-style-type: none;
+}
